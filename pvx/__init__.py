@@ -8,7 +8,7 @@ class PvxClient(object):
     WSDL_URL = 'http://wms.peoplevox.net/{0}/resources/integrationservicev4.asmx?wsdl'
 
     def __init__(self, client_id, username, password):
-        client = zeep.Client(wsdl=self.WSDL_URL.format(client_id), strict=False)
+        client = zeep.Client(wsdl=self.WSDL_URL.format(client_id), strict=False, xml_huge_tree=True)
         auth_response = client.service.Authenticate(client_id,
                                                     username,
                                                     base64.b64encode(password))
